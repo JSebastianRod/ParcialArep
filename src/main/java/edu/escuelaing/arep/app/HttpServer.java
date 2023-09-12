@@ -73,12 +73,12 @@ public class HttpServer {
    }
 
    
-   public static String getClass(String clase){
+   //public static String getClass(String clase){
       String a;
       //Class c = Class.forName(clase);
-      a = c.toString();
-      return a;
-   }
+      //a = c.toString();
+      //return a;
+   //}
 
    public static void chooser(String uriString){
       if(uriString.contains("class=")){
