@@ -60,7 +60,9 @@ public class HttpServer {
          } else {
             outputLine = "HTTP/1.1 200 OK\r\n"
                   + "Content-Type: text/html\r\n"
-                  + "\r\n" + getResponse();
+                  + "\r\n" + 
+                  getResponse();
+                  
          }
          out.println(outputLine);
          out.close();
@@ -68,6 +70,14 @@ public class HttpServer {
          clientSocket.close();
       }
       serverSocket.close();
+   }
+
+   
+   public static String getClass(String clase){
+      String a;
+      Class c = Class.forName("java.lang.String");
+      a = c.toString();
+      return a;
    }
 
    public static String getResponse() {
@@ -79,7 +89,7 @@ public class HttpServer {
             + "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
             + "    </head>\n"
             + "    <body>\n"
-            + "        <h1>Form with GET</h1>\n"
+            + "        <h1>Reflective ChatGPT</h1>\n"
             + "        <form action=\"/hello\">\n"
             + "            <label for=\"name\">Name:</label><br>\n"
             + "            <input type=\"text\" id=\"name\" name=\"name\" value=\"John\"><br><br>\n"
