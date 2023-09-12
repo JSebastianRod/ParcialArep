@@ -75,9 +75,15 @@ public class HttpServer {
    
    public static String getClass(String clase){
       String a;
-      Class c = Class.forName("java.lang.String");
+      //Class c = Class.forName(clase);
       a = c.toString();
       return a;
+   }
+
+   public static void chooser(String uriString){
+      if(uriString.contains("class=")){
+      //   + "\r\n" + 
+      }
    }
 
    public static String getResponse() {
