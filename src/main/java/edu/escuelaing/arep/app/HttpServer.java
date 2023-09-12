@@ -25,19 +25,23 @@ public class HttpServer {
             clientSocket.getOutputStream(), true);
       BufferedReader in = new BufferedReader(
             new InputStreamReader(clientSocket.getInputStream()));
-      String inputLine, outputLine;
+      String inputLine, outputLine, uriString,firstLine;
+      uriString = "";
+      firstLine = "/";
       while ((inputLine = in.readLine()) != null) {
+         if (inputLine.contains("consulta?comando=")) {
+            String[] ans = inputLine.split("comando=");
+            uriString = (ans[1].split("HTTP")[0]).replace(" ", "");
+         }
          System.out.println("Recibí: " + inputLine);
          if (!in.ready()) {
             break;
          }
       }
-      if (inputLine.contains("GET")) {
-         outputLine = "HTTP/1.1 200 OK\r\n"
-               + "Content-Type: text/html\r\n"
-               + "\r\n" + getResponse();
-         out.println(outputLine);
-      } else {
+
+      
+      
+      if (!uriString.equals("")) {
          outputLine = "HTTP/1.1 200 OK\r\n"
                + "Content-Type: text/html\r\n"
                + "\r\n"
@@ -51,8 +55,12 @@ public class HttpServer {
                + "<h1>Mi propio mensaje</h1>\n"
                + "</body>\n"
                + "</html>\n";
-         out.println(outputLine);
+      } else {
+         outputLine = "HTTP/1.1 200 OK\r\n"
+               + "Content-Type: text/html\r\n"
+               + "\r\n" + getResponse();
       }
+      out.println(outputLine);
       out.close();
       in.close();
       clientSocket.close();
